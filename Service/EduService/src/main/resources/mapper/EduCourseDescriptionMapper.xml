@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.humaoyang.eduservice.mapper.EduCourseDescriptionMapper">
+
+    <resultMap id="EduCourseDescriptionResultMap" type="com.humaoyang.eduservice.bean.EduCourseDescription">
+            <id property="id" column="id" jdbcType="CHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+</mapper>

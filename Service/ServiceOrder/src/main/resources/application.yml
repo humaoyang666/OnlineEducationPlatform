@@ -1,0 +1,30 @@
+server:
+  port: 8007
+spring:
+  application:
+    name: service-order
+  profiles:
+    active: dev
+  datasource:
+    username: root
+    password: humaoyang123..
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/onlineeducationplatform?serverTimezone=GMT%2B8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+feign:
+  hystrix:
+    enabled: true
+weixin:
+  pay:
+    appId: wx74862e0dfcf69954
+    mchId: 1558950191
+    mchKey: T6m9iK73b0kn9g5v426MKfHQH7X8rKwb
+    notifyurl: http://guli.shop/api/order/weixinPay/weixinNotify

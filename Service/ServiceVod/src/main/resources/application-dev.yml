@@ -1,0 +1,15 @@
+aliyun:
+  vod:
+    file:
+      regionId: cn-shanghai
+      accessKeyId: LTAI5tSLkX2bJuyqJ59ddbqU
+      accessKeySecret: z0YfX7PXcOUBQrsOecHK7Z7EtlGwNg
+spring:
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848

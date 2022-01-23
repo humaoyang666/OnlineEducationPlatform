@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.humaoyang.servicecenter.mapper.UcenterMemberMapper">
+
+    <resultMap id="UcenterMemberResultMap" type="com.humaoyang.servicecenter.bean.UcenterMember">
+            <id property="id" column="id" jdbcType="CHAR"/>
+            <result property="openid" column="openid" jdbcType="VARCHAR"/>
+            <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="TINYINT"/>
+            <result property="age" column="age" jdbcType="TINYINT"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="sign" column="sign" jdbcType="VARCHAR"/>
+            <result property="isDisabled" column="is_disabled" jdbcType="TINYINT"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+        <select id="countRegister" resultType="java.lang.Integer">
+                select count(*)
+                from ucenter_member
+                where date(gmt_create) = #{day}
+        </select>
+
+</mapper>

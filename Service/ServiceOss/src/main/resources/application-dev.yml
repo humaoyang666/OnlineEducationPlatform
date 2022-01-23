@@ -1,0 +1,16 @@
+aliyun:
+  oss:
+    file:
+      endPoint: oss-cn-beijing.aliyuncs.com
+      accessKeyId: LTAI5tSLkX2bJuyqJ59ddbqU
+      accessKeySecret: z0YfX7PXcOUBQrsOecHK7Z7EtlGwNg
+      bucketName: onlineeducationplatform-file
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB

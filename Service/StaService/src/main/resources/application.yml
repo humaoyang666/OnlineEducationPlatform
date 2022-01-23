@@ -1,0 +1,24 @@
+server:
+  port: 8008
+spring:
+  application:
+    name: service-statistic
+  profiles:
+    active: dev
+  datasource:
+    username: root
+    password: humaoyang123..
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/onlineeducationplatform?serverTimezone=GMT%2B8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+feign:
+  hystrix:
+    enabled: true

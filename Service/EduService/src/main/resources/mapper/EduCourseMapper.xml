@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.humaoyang.eduservice.mapper.EduCourseMapper">
+
+    <resultMap id="EduCourseResultMap" type="com.humaoyang.eduservice.bean.EduCourse">
+            <id property="id" column="id" jdbcType="CHAR"/>
+            <result property="teacherId" column="teacher_id" jdbcType="CHAR"/>
+            <result property="subjectId" column="subject_id" jdbcType="CHAR"/>
+            <result property="subjectParentId" column="subject_parent_id" jdbcType="VARCHAR"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="lessonNum" column="lesson_num" jdbcType="OTHER"/>
+            <result property="cover" column="cover" jdbcType="VARCHAR"/>
+            <result property="buyCount" column="buy_count" jdbcType="BIGINT"/>
+            <result property="viewCount" column="view_count" jdbcType="BIGINT"/>
+            <result property="version" column="version" jdbcType="BIGINT"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="isDeleted" column="is_deleted" jdbcType="TINYINT"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <select id="getCoursePublishVo" resultType="com.humaoyang.eduservice.bean.vo.CoursePublishVo">
+            select edu_course.id as id, edu_course.title as title,
+                   edu_course.price as price,
+                   edu_course.lesson_num as lessonNum,
+                   edu_course.cover as cover,
+                   edu_teacher.name as teacherName,
+                   es1.title as subjectLevelOne,
+                   es2.title as subjectLevelTwo
+            from edu_course
+                         left join edu_teacher on edu_course.teacher_id = edu_teacher.id
+                         left join edu_subject es1 on edu_course.subject_parent_id = es1.id
+                         left join edu_subject es2 on edu_course.id= es2.id
+            where edu_course.is_deleted=0 and edu_course.id=#{id}
+    </select>
+    <select id="getWebCourseInfoById" resultType="com.humaoyang.eduservice.bean.frontvo.CourseWebVo">
+        select edu_course.id         as id,
+               edu_course.title      as title,
+               edu_course.price      as price,
+               edu_course.lesson_num as lessonNum,
+               edu_course.cover      as cover,
+               edu_course.buy_count  as buyCount,
+               edu_course.view_count as viewCount,
+               edu_course_description.description as description,
+               edu_teacher.id        as teacherId,
+               edu_teacher.name      as teacherName,
+               edu_teacher.intro     as intro,
+               edu_teacher.avatar    as avatar,
+               es1.id                as subjectLevelOneId,
+               es1.title             as subjectLevelOne,
+               es2.id                as subjectLevelTwoId,
+               es2.title             as subjectLevelTwo
+        from edu_course
+                 left outer join edu_course_description on edu_course.id = edu_course_description.id
+                 left join edu_teacher on edu_course.teacher_id = edu_teacher.id
+                 left join edu_subject es1 on edu_course.subject_parent_id = es1.id
+                 left join edu_subject es2 on edu_course.id = es2.id
+        where edu_course.is_deleted = 0
+          and edu_course.id=#{id}
+    </select>
+
+</mapper>
