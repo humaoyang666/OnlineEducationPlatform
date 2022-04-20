@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class EduServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(EduServiceApplication.class,args);
+        System.out.println(1);
     }
 }
 
