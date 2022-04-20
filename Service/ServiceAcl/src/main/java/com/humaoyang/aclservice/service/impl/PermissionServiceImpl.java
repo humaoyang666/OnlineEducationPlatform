@@ -1,6 +1,8 @@
 package com.humaoyang.aclservice.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.humaoyang.aclservice.entity.Permission;
 import com.humaoyang.aclservice.entity.RolePermission;
 import com.humaoyang.aclservice.entity.User;
@@ -10,14 +12,13 @@ import com.humaoyang.aclservice.mapper.PermissionMapper;
 import com.humaoyang.aclservice.service.PermissionService;
 import com.humaoyang.aclservice.service.RolePermissionService;
 import com.humaoyang.aclservice.service.UserService;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -57,14 +58,14 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         //根据角色id获取角色权限
         List<RolePermission> rolePermissionList = rolePermissionService.list(new QueryWrapper<RolePermission>().eq("role_id",roleId));
         //转换给角色id与角色权限对应Map对象
-//        List<String> permissionIdList = rolePermissionList.stream().map(e -> e.getPermissionId()).collect(Collectors.toList());
-//        allPermissionList.forEach(permission -> {
-//            if(permissionIdList.contains(permission.getId())) {
-//                permission.setSelect(true);
-//            } else {
-//                permission.setSelect(false);
-//            }
-//        });
+        List<String> permissionIdList = rolePermissionList.stream().map(RolePermission::getPermissionId).collect(Collectors.toList());
+        allPermissionList.forEach(permission -> {
+            if(permissionIdList.contains(permission.getId())) {
+                permission.setSelect(true);
+            } else {
+                permission.setSelect(false);
+            }
+        });
         for (int i = 0; i < allPermissionList.size(); i++) {
             Permission permission = allPermissionList.get(i);
             for (int m = 0; m < rolePermissionList.size(); m++) {

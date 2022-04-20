@@ -23,11 +23,11 @@ spring:
         - id: service-ucenter
           uri: lb://service-ucenter
           predicates:
-            - Path=/ucenterservice/**
+            - Path=/educenter/**
         - id: service-cms
           uri: lb://service-cms
           predicates:
-            - Path=/cmsservice/**
+            - Path=/educms/**
         - id: service-msm
           uri: lb://service-msm
           predicates:
@@ -35,7 +35,7 @@ spring:
         - id: service-order
           uri: lb://service-order
           predicates:
-            - Path=/orderservice/**
+            - Path=/edeorder/**
         - id: service-oss
           uri: lb://service-oss
           predicates:

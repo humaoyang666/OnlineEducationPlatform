@@ -1,7 +1,7 @@
 package com.humaoyang.eduservice.mapper;
 
-import com.humaoyang.eduservice.bean.EduChapter;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.humaoyang.eduservice.bean.EduChapter;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

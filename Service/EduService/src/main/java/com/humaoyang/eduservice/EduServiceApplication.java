@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.humaoyang"})
-@EnableDiscoveryClient //服务注册
+@EnableDiscoveryClient //服务发现
 @EnableFeignClients//服务调用
 public class EduServiceApplication {
     public static void main(String[] args) {

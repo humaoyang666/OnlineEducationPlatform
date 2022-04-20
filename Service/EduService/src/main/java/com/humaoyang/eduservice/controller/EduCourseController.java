@@ -41,7 +41,7 @@ public class EduCourseController {
     @GetMapping(value = "/getCourseInfo/{courseId}")
     public R getCourseInfo(@PathVariable(value = "courseId") String courseId){
         CourseInfoVo courseInfoVo=eduCourseService.getCourseInfo(courseId);
-        return R.ok().data("courseInfo",courseInfoVo);
+        return R.ok().data("courseInfoVo",courseInfoVo);
     }
     //修改课程信息
     @PostMapping(value = "/updateCourseInfo")
